@@ -1,4 +1,4 @@
-# BookMyShow Database Design
+#BookMyShow Database Design
 
 This project models a simplified BookMyShow-like ticketing platform where users can browse movies running in a theatre for the next 7 days and see show timings.
 
