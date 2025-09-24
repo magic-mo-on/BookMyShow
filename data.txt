@@ -1,0 +1,25 @@
+USE bookmyshow;
+
+-- Insert theaters
+INSERT INTO theaters (name, city, state, address) VALUES
+('PVR Nexus', 'Bangalore', 'Karnataka', 'Forum Mall, Koramangala');
+
+-- Insert screens
+INSERT INTO screens (theater_id, name, total_seats) VALUES
+(1, 'Screen 1', 150),
+(1, 'IMAX', 200);
+
+-- Insert movies
+INSERT INTO movies (title, language, genre, duration_mins, certification) VALUES
+('Dasara', 'Telugu', 'Drama', 150, 'UA'),
+('Kisi Ka Bhai Kisi Ki Jaan', 'Hindi', 'Action', 160, 'UA'),
+('Tu Jhoothi Main Makkar', 'Hindi', 'Romance', 145, 'UA'),
+('Avatar: The Way of Water', 'English', 'Sci-Fi', 190, 'UA');
+
+-- Insert shows
+INSERT INTO shows (movie_id, theater_id, screen_id, show_date, start_time, end_time, price, available_seats) VALUES
+(1, 1, 1, '2025-04-25', '12:10:00', '15:00:00', 250.00, 150),
+(2, 1, 1, '2025-04-25', '13:00:00', '16:00:00', 280.00, 150),
+(2, 1, 1, '2025-04-25', '16:10:00', '19:10:00', 280.00, 150),
+(3, 1, 1, '2025-04-25', '21:15:00', '23:30:00', 300.00, 150),
+(4, 1, 2, '2025-04-25', '12:30:00', '15:40:00', 400.00, 200);

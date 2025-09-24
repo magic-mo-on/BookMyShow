@@ -1,0 +1,55 @@
+
+---
+
+## sql/schema.sql
+
+```sql
+CREATE DATABASE IF NOT EXISTS bookmyshow;
+USE bookmyshow;
+
+-- Theaters table
+CREATE TABLE theaters (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    address VARCHAR(400),
+    UNIQUE KEY ux_theater (name, city)
+);
+
+-- Screens table
+CREATE TABLE screens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    theater_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    total_seats INT NOT NULL,
+    FOREIGN KEY (theater_id) REFERENCES theaters(id) ON DELETE CASCADE,
+    UNIQUE KEY ux_screen (theater_id, name)
+);
+
+-- Movies table
+CREATE TABLE movies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    language VARCHAR(50),
+    genre VARCHAR(50),
+    duration_mins INT,
+    certification VARCHAR(10)
+);
+
+-- Shows table
+CREATE TABLE shows (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    movie_id INT NOT NULL,
+    theater_id INT NOT NULL,
+    screen_id INT NOT NULL,
+    show_date DATE NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    price DECIMAL(8,2),
+    available_seats INT,
+    FOREIGN KEY (movie_id) REFERENCES movies(id),
+    FOREIGN KEY (theater_id) REFERENCES theaters(id),
+    FOREIGN KEY (screen_id) REFERENCES screens(id),
+    INDEX ix_shows (theater_id, show_date)
+);

@@ -1,0 +1,14 @@
+USE bookmyshow;
+
+P2: List all shows for a given theatre and date
+SELECT
+    m.title AS movie_title,
+    sc.name AS screen_name,
+    s.show_date,
+    TIME_FORMAT(s.start_time, '%h:%i %p') AS show_time
+FROM shows s
+JOIN movies m ON s.movie_id = m.id
+JOIN screens sc ON s.screen_id = sc.id
+WHERE s.theater_id = 1
+  AND s.show_date = '2025-04-25'
+ORDER BY s.start_time;
